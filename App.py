@@ -60,18 +60,22 @@ def pantalla2():
     # Funcion 2 (codigo buscador)
     # def Busca(ruta_1, texto_1):
     import os
+    from sys import exec_prefix
+    # def Busca(ruta_1, texto_1):
     carpeta = os.listdir(ruta_1)
+    texto_2 = texto_1 + "\n" 
     # print(carpeta)
     for archivo in carpeta:
         with open(ruta_1 + '/' + archivo) as f_obj:
-            contents = f_obj.read()
-            contents_limpio = contents.replace("\n"," ")
-            linea = contents_limpio.find(texto_1)
-            linea_real = linea + 1               
-            if linea_real != 0:
-                print("Texto encontrado en el archivo : " + archivo + " en la linea " + str(linea_real))
-                resultado_label = tkinter.Label(ventana1, text ="Texto encontrado en el archivo : " + archivo + " en la linea " + str(linea_real))
-                resultado_label.pack(fill='x', expand=True)
+            lineas = f_obj.readlines()
+            # print(lineas)
+            index = 0
+            for linea in lineas:
+                index = index + 1
+                if linea == texto_1 or linea == texto_2:
+                    print("Texto encontrado en el archivo " + archivo + " en la linea " + str(index))
+                    resultado_label = tkinter.Label(ventana1, text ="Texto encontrado en el archivo : " + archivo + " en la linea " + str(index))
+                    resultado_label.pack(fill='x', expand=True)
 
 
 
